@@ -14,6 +14,10 @@
 ### Who do a simple api test? ###
 
 
+* cd to the root directory
+* run mvn spring-boot:run 
+
+
 * POST
 * http://localhost:8080/api/predavac
 
