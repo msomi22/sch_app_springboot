@@ -7,5 +7,6 @@ import hr.vvg.mihajlov.kanfap.model.bean.Korisnik;
 @Repository 
 public interface KorisnikDAO extends CrudRepository<Korisnik, Long> {
 
-
+	public Korisnik findUserByUsername(String username); 
+	
 }
