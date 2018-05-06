@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Informacije o vašem predavanju</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/w3-theme-teal.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div sec:authorize="isAuthenticated()">
+		<form method="POST" th:action="@{/logout}">
+			Najaveni ste kao <span sec:authentication="name">Korisnik</span>.
+			<input type="submit" value="Logout" class="btn btn-danger" />
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+		</form>
+	</div>
+	
+	<h2>Informacije o vašem predavanju</h2>
+    <p th:text="'Zdravo ' + ${predavanje.predavac.ime} + ', vaše predavanje je prihvaćeno.'" />
+    <p th:text="'Ime predavaca: ' + ${predavanje.predavac.ime}" />
+    <p th:text="'Tema predavanja: ' + ${predavanje.tema}" />
+    <p th:text="'Kratak sadržaj: ' + ${predavanje.sadrzaj}" />
+    <p th:text="'Vrsta predavanja: ' + ${predavanje.vrsta}" />
+    <p th:text="'Dodatna literatura: ' + ${predavanje.dodatnaLiteratura()}" />
+    
+    <div sec:authorize="hasRole('ROLE_ADMIN')" >
+		<div th:unless="${predavanje.objavljeno}" >
+			<h5>Predavanje nije objavljeno u programu konferencije.</h5>
+		</div>
+		<div th:if="${predavanje.objavljeno}" >
+			<h5>Predavanje je objavljeno i vidljivo u programu konferencije.</h5>
+		</div>
+	</div>
+
+    <a href="/predavanja/pocetna">Pošalji drugi zahtjev</a>
+</body>
+</html>

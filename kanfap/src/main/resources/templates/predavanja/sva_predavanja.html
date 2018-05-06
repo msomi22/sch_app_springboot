@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Sva predavanja</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/w3-theme-teal.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div sec:authorize="isAuthenticated()">
+		<form method="POST" th:action="@{/logout}">
+			Najaveni ste kao <span sec:authentication="name">Korisnik</span>.
+			<input type="submit" value="Logout" class="btn btn-danger" />
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+		</form>
+	</div>
+
+
+	
+	<h2>Sva predavanja</h2>
+
+	<div class="container-fluid">
+		<div id="header"  th:include="fragments :: header"></div>
+    
+	    <table class="table-stripped">
+	    	<tr>
+	    		<th>Tema</th>
+	    		<th>Sadržaj</th>
+	    		<th>Vrsta predavanja</th>
+	    		<th>Ime predavača</th>
+	    		<th>Pozicija predavača</th>
+	    		<th sec:authorize="hasRole('ROLE_ADMIN')">Objavljeno</th>
+	    	</tr>
+	    	<tr th:each="predavanje : ${PredavanjeRepository}">
+	    		<td th:text="${predavanje.tema}" ><td/>
+	    		<td th:text="${predavanje.sadrzaj}" ><td/>
+	    		<td th:text="${predavanje.vrsta}" ><td/>
+	    		<td th:text="${predavanje.predavac.ime}" ><td/>
+	    		<td th:text="${predavanje.predavac.pozicija}" ><td/>
+	    		<td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${predavanje.objavljeno? 'Objavljeno'" ><td/>
+	    </table>
+	</div>
+ 
+    <a href="/predavanja/pocetna">Novo predavanje</a>
+</body>
+</html>

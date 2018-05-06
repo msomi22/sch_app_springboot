@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS API TEST</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<h1>JS API TEST</h1>
+
+
+
+<script>
+$(document).ready(function(){
+
+    $("button").click(function(){
+
+	    var url = 'http://localhost:8081/quickbuy/api/product/search/Samsung';
+
+	     $.ajax
+			({
+			  type: "GET",
+			  url: url, 
+			  dataType: 'json', 
+			  data: '',
+			  success: function (data){
+			    console.log(data);   
+			  }
+			});
+
+
+
+	  
+        
+    });
+
+
+});
+
+
+
+</script>
+
+
+
+<button>Send an HTTP GET request</button>
+
+
+
+
+</body>
+</html>

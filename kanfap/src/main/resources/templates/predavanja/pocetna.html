@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Organizacija Seminara</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/w3-theme-teal.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div sec:authorize="isAuthenticated()">
+		<form method="POST" th:action="@{/logout}">
+			Najaveni ste kao <span sec:authentication="name">Korisnik</span>.
+			<input type="submit" value="Logout" class="btn btn-danger" />
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+		</form>
+	</div>
+
+	<h1>Dobrodošli!</h1>
+	<h2>Sustav za obrađivanje prijedlog predavanja</h2>
+    
+    <form action="#" th:action="@{/predavanja/pocetna}" th:object="${predavanje}" method="post">
+        
+
+			
+
+    
+        <p>Ime predavaca: 
+        
+	        	    <input type="text" th:field="*{predavac.ime}" />
+
+        	<span class="validation-error" th:if="${#fields.hasErrors('predavac.ime')}"
+			th:errors="*{predavac.ime}">Predavač ime error
+			</span>
+		</p>
+		
+        <p>Tema predavanja: 
+
+	        	    <input type="text" th:field="*{tema}" />
+
+        	<span class="validation-error" th:if="${#fields.hasErrors('tema')}"
+			th:errors="*{tema}">Tema error
+			</span>
+        </p>
+        <p>Vrsta predavanja: 
+			    	<select th:field="*{vrsta}">
+						<option value="" >---Odaberite vrijednost---</option>
+						<option th:each="vrsta : ${vrste}"
+						th:value="${vrsta}"
+						th:text="${vrsta}"></option>
+					</select>
+		</p>
+		
+        <p>Sadržaj predavanja: 
+
+	            	<textarea th:field="*{sadrzaj}"> </textarea>
+
+        	<span class="validation-error" th:if="${#fields.hasErrors('sadrzaj')}"
+			th:errors="*{sadrzaj}">Sadržaj error
+			</span>
+        </p>
+        
+        <p> 
+        	<input type="checkbox" th:field="*{literaturaJePotrebna}" name="literatura" value="PotrebnaLiteratura"> Potrebna Literatura: 
+        		<input type="text" th:field="*{literatura}" />
+        </p>
+        
+        <div sec:authorize="hasRole('ROLE_ADMIN')" >
+			<div th:unless="${objavljeno}" >
+			    <p><input type="checkbox" th:field="*{objavljeno}" name="objavljeno"> Objavljeno u programu za konferenciju: </p>
+			</div>
+		</div>
+
+        <p><input type="submit" value="Pošalji zahtjev" /></p>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+    </form>
+    <a href="sva_predavanja">Prikaži sva predavanja</a>
+</body>
+</html>

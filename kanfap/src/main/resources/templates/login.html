@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Najava</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/w3-theme-teal.css" rel="stylesheet" type="text/css">
+    <link href="/predavanja/pocetna" >
+</head>
+  <!-- <body th:include="layout :: body" th:with="content=~{::content}">  -->
+  <body>
+    <div>
+        <form name="f" th:action="@{/login}" method="post">               
+            <fieldset>
+                <legend>Molimo najavite se:</legend>
+                <div th:if="${param.error}" class="alert alert-error">    
+                    Korisničko ime i lozinka koju ste unijeli nisu točni.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success"> 
+                    Sada ste odjaveni.
+                </div>
+                <label for="username">Korisničko ime:</label>
+                <input type="text" id="username" name="username"/>        
+                <label for="password">Lozinka</label>
+                <input type="password" id="password" name="password"/>    
+                <div class="form-actions">
+                    <button type="submit" class="btn">Najavi se</button>
+                </div>
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            </fieldset>
+        </form>
+    </div>
+  </body>
+</html>

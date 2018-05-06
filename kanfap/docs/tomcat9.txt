@@ -1,0 +1,27 @@
+
+
+#How to run tomcat
+
+ -navigate to bin
+ -run; ./catalina.sh run
+ -see the opened port on the terminal
+ -deploy war on the directory named webapp
+ -http://localhost:8087
+
+  
+ -http://localhost:8087/quickbuy/api
+
+
+
+ mvn spring-boot:run 
+
+
+
+
+ <Connector port="8081" protocol="HTTP/1.1" 
+           connectionTimeout="20000" 
+           URIEncoding="UTF-8"
+           address="0.0.0.0"
+           redirectPort="8443" />    
+
+
