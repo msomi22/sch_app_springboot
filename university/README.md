@@ -14,7 +14,7 @@
 * run  mysql -h localhost -u root -p unidb < db_structure.sql
 
 
-### Who do a simple api test? ###
+### How do i a simple api test? ###
 
 
 * cd to the root directory

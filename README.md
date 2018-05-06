@@ -12,7 +12,7 @@
 * create database school_app; 
 
 
-### Who do a simple api test? ###
+### How do i a simple api test? ###
 
 
 * cd to the root directory
