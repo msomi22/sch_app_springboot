@@ -29,8 +29,7 @@
 
 
 
-### Contribution guidelines ###
+### How do i setup a simple project? ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* http://start.spring.io
+
