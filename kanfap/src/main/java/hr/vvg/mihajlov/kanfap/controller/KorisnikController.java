@@ -41,6 +41,7 @@ public class KorisnikController {
 	// this is the user reg Controller 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid  Korisnik korisnik, BindingResult bindingResult) {
+		System.out.println("*_*_*_*_*_*_*_*_**_*_*_*_*_*_*_*_");
 		ModelAndView modelAndView = new ModelAndView();
 		Korisnik userExists = korisnikDAO.findUserByUsername(korisnik.getUsername());
 		if (userExists != null) {
